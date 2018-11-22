@@ -3,6 +3,9 @@
 //Library Includes
 #include <SFML/Graphics.hpp>
 
+//Project Includes
+#include "../../Framework/Headers/GameObject.h"
+
 class Level
 {
 
@@ -12,16 +15,14 @@ public:
 
 	virtual void Draw(sf::RenderTarget& _target);
 	virtual void Update(sf::Time _frameTime);
-
 	void loadLevel(int _levelToLoad);
 	void ReloadLevel();
 	int GetCurrentLevel();
 
-	int getCellSize();
-
 private:
 
-	const float m_cellSize;
 	int m_currentLevel;
-	std::vector<std::vector<sf::Sprite> > m_background;
+	GameObject* m_player;
+	sf::Sprite m_background;
+	std::vector<GameObject*> m_drawSpriteList;
 };

@@ -100,7 +100,7 @@ int main()
 		///---------------------------------------------
 
 		// Clear the window to a single colour
-		gameWindow.clear(sf::Color::Black);
+		gameWindow.clear(sf::Color::Cyan);
 
 
 		//Pass draw to level
