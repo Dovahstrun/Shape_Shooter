@@ -13,4 +13,7 @@ public:
 	void Update(sf::Time _frameTime);
 
 	void fire();
+
+private:
+	bool isSpaceDown;
 };

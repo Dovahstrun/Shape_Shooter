@@ -1,10 +1,47 @@
 //Project Includes
 #include "../Headers/EnemyShape.h"
+#include "../../Framework/Headers/AssetManager.h"
+#include "../Headers/Player.h"
+#include <cstdlib>
 
 EnemyShape::EnemyShape()
 	: MovingObject()
+	, m_currentEShape(1)
 {
+	setCurrentEShape((rand() % 4) + 1);
+	if (m_currentEShape == 1)
+	{
+		m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_circle.png"));
+	}
+	else if (m_currentEShape == 2)
+	{
+		m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_square.png"));
+	}
+	else if (m_currentEShape == 3)
+	{
+		m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_triangle.png"));
+	}
+	else if (m_currentEShape == 4)
+	{
+		m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_star.png"));
+	}
+	m_sprite.setScale(0.75f, 0.75f);
+}
 
+void EnemyShape::setCurrentEShape(int _newShape)
+{
+	m_currentEShape = _newShape;
+}
+
+int EnemyShape::getCurrentEShape()
+{
+	return m_currentEShape;
+}
+
+void EnemyShape::Update(sf::Time _frameTime) 
+{
+	m_velocity.x = -400;
+	MovingObject::Update(_frameTime);
 }
 
 void EnemyShape::Collide(GameObject & _collider)
@@ -22,7 +59,7 @@ void EnemyShape::Collide(GameObject & _collider)
 	if (castPlayer != nullptr)
 	{
 		//Do something based on type of pickup
-		OnPickup(*castPlayer);
+		//OnPickup(*castPlayer);
 
 		//Disappear
 		m_active = false;

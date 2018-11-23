@@ -25,4 +25,5 @@ private:
 	GameObject* m_player;
 	sf::Sprite m_background;
 	std::vector<GameObject*> m_drawSpriteList;
+	std::vector<GameObject*> m_updateList;
 };

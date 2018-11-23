@@ -2,7 +2,6 @@
 
 //Project Includes
 #include "MovingObject.h"
-#include <SFML/Graphics.hpp>
 
 class Shape : public MovingObject
 {
@@ -10,9 +9,13 @@ class Shape : public MovingObject
 public:
 
 	Shape();
+
+	void setCurrentShape(int _newShape);
+	int getCurrentShape();
 	
 private:
 
-	int currentShape;
+	int m_currentShape; //1 = circle; 2 = square; 3 = triangle; 4 = star
+	
 
 };

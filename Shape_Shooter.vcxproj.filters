@@ -56,7 +56,10 @@
     <ClCompile Include="Game Code\Sources\MovingObject.cpp">
       <Filter>Game Code\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
+    <ClCompile Include="Game Code\Sources\Shape.cpp">
+      <Filter>Game Code\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Code\Sources\EnemyShape.cpp">
       <Filter>Game Code\Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,6 +92,9 @@
       <Filter>Game Code\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
+      <Filter>Game Code\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Code\Headers\EnemyShape.h">
       <Filter>Game Code\Headers</Filter>
     </ClInclude>
   </ItemGroup>

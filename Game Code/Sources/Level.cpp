@@ -7,12 +7,15 @@
 #include "../Headers/Level.h"
 #include "../../Framework/Headers/AssetManager.h"
 #include "../Headers/Player.h"
+#include "../Headers/Shape.h"
+#include "../Headers/EnemyShape.h"
 
 Level::Level()
 	: m_currentLevel(0)
 	, m_player(nullptr)
 	, m_background()
 	, m_drawSpriteList()
+	, m_updateList()
 {
 	loadLevel(1);
 }
@@ -56,7 +59,14 @@ void Level::Draw(sf::RenderTarget & _target)
 
 void Level::Update(sf::Time _frameTime)
 {
-	
+	//Update
+	for (int i = 0; i < m_updateList.size(); ++i)
+	{
+		if (m_updateList[i]->isActive())
+		{
+			m_updateList[i]->Update(_frameTime);
+		}
+	}
 }
 
 
@@ -80,10 +90,19 @@ void Level::loadLevel(int _levelToLoad)
 	//Set up all the game objects
 	Player* player = new Player();
 	m_player = player;
+	player->SetPosition(200, 500);
+	m_drawSpriteList.push_back(player);
+	m_updateList.push_back(player);
 
-	m_player->SetPosition(200, 500);
-	
-	m_drawSpriteList.push_back(m_player);
+	Shape* shape = new Shape();
+	shape->SetPosition(700, 500);
+	m_drawSpriteList.push_back(shape);
+	m_updateList.push_back(shape);
+
+	EnemyShape* eShape = new EnemyShape();
+	eShape->SetPosition(1400, 550);
+	m_drawSpriteList.push_back(eShape);
+	m_updateList.push_back(eShape);
 
 	
 }
