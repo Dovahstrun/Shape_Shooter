@@ -16,4 +16,5 @@ public:
 
 private:
 	bool isSpaceDown;
+	std::vector<sf::String> m_shapeKey;
 };
