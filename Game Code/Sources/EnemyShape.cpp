@@ -5,38 +5,29 @@
 #include <cstdlib>
 
 EnemyShape::EnemyShape()
-	: MovingObject()
-	, m_currentEShape(1)
+	: Shape()
 {
-	setCurrentEShape((rand() % 4) + 1);
-	if (m_currentEShape == 1)
+	setCurrentShape((rand() % 4) + 1);
+	m_currentShape = getCurrentShape();
+	if (m_currentShape == 1)
 	{
 		m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_circle.png"));
 	}
-	else if (m_currentEShape == 2)
+	else if (m_currentShape == 2)
 	{
 		m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_square.png"));
 	}
-	else if (m_currentEShape == 3)
+	else if (m_currentShape == 3)
 	{
 		m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_triangle.png"));
 	}
-	else if (m_currentEShape == 4)
+	else if (m_currentShape == 4)
 	{
 		m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_star.png"));
 	}
 	m_sprite.setScale(0.75f, 0.75f);
 }
 
-void EnemyShape::setCurrentEShape(int _newShape)
-{
-	m_currentEShape = _newShape;
-}
-
-int EnemyShape::getCurrentEShape()
-{
-	return m_currentEShape;
-}
 
 void EnemyShape::Update(sf::Time _frameTime) 
 {

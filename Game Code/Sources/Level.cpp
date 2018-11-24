@@ -3,11 +3,10 @@
 #include <fstream>
 
 //Project Includes
-
 #include "../Headers/Level.h"
 #include "../../Framework/Headers/AssetManager.h"
 #include "../Headers/Player.h"
-#include "../Headers/Shape.h"
+#include "../Headers/NiceShape.h"
 #include "../Headers/EnemyShape.h"
 
 Level::Level()
@@ -90,12 +89,12 @@ void Level::loadLevel(int _levelToLoad)
 	//Set up all the game objects
 	Player* player = new Player();
 	m_player = player;
-	player->SetPosition(200, 500);
+	player->SetPosition(200, 550);
 	m_drawSpriteList.push_back(player);
 	m_updateList.push_back(player);
 
-	Shape* shape = new Shape();
-	shape->SetPosition(700, 500);
+	NiceShape* shape = new NiceShape();
+	shape->SetPosition(700, 550);
 	m_drawSpriteList.push_back(shape);
 	m_updateList.push_back(shape);
 
