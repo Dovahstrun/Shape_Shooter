@@ -10,4 +10,5 @@ NiceShape::NiceShape()
 {
 	m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/" + getThisShape(rand() % 4) + ".png"));
 	m_sprite.setScale(0.75f, 0.75f);
+	m_active = false;
 }

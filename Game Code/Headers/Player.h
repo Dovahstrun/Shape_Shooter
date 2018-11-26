@@ -15,6 +15,6 @@ public:
 	void fire();
 
 private:
-	bool isSpaceDown;
 	std::vector<sf::String> m_shapeKey;
+	std::vector<bool> m_shapeKeyDown;
 };

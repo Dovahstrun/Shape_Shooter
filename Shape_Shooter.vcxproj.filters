@@ -94,13 +94,13 @@
     <ClInclude Include="Game Code\Headers\MovingObject.h">
       <Filter>Game Code\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Game Code\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Game Code\Headers\EnemyShape.h">
       <Filter>Game Code\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Game Code\Headers\NiceShape.h">
+      <Filter>Game Code\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Code\Headers\Shape.h">
       <Filter>Game Code\Headers</Filter>
     </ClInclude>
   </ItemGroup>
