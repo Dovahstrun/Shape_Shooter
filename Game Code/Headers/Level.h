@@ -4,7 +4,8 @@
 #include <SFML/Graphics.hpp>
 
 //Project Includes
-#include "../../Framework/Headers/GameObject.h"
+#include "Shape.h"
+
 
 class Level
 {
@@ -19,6 +20,10 @@ public:
 	void ReloadLevel();
 	int GetCurrentLevel();
 
+	void loadBullet(sf::String _shapeToFire);
+	void spawnBullet(sf::String _shapeToFire);
+	bool deleteShape(Shape* _toDelete);
+
 private:
 
 	int m_currentLevel;
@@ -26,4 +31,9 @@ private:
 	sf::Sprite m_background;
 	std::vector<GameObject*> m_drawSpriteList;
 	std::vector<GameObject*> m_updateList;
+	std::vector<std::pair<GameObject*, GameObject*> > m_collisionList;
+	float m_timer;
+	float m_timeBetweenSpawns;
+	bool m_pendingBullet;
+	sf::String m_bulletToSpawn;
 };

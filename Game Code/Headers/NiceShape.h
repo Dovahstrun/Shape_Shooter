@@ -10,6 +10,8 @@ public:
 
 	NiceShape();
 
+	void Update(sf::Time _frameTime);
+
 private:
 
 

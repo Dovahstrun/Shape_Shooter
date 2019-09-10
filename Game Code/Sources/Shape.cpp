@@ -1,5 +1,7 @@
+//Project Includes
 #include "../Headers/Shape.h"
 #include "../../Framework/Headers/AssetManager.h"
+#include "../Headers/Level.h"
 
 Shape::Shape()
 	: MovingObject()
@@ -14,24 +16,15 @@ Shape::Shape()
 	m_thisShape.push_back("Star");
 }
 
-void Shape::setCurrentShape(int _newShape)
+
+void Shape::setThisShape(sf::String _newShape)
 {
 	m_currentShape = _newShape;
 }
 
-int Shape::getCurrentShape()
+sf::String Shape::getThisShape()
 {
 	return m_currentShape;
-}
-
-void Shape::setThisShape(sf::String _newShape)
-{
-	
-}
-
-sf::String Shape::getThisShape(int _vectorPos)
-{
-	return m_thisShape[_vectorPos];
 }
 
 int Shape::getShapeX()

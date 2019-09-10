@@ -7,6 +7,7 @@ Player::Player()
 	: SpriteObject()
 	, m_shapeKey()
 	, m_shapeKeyDown()
+	, m_level(nullptr)
 {
 	m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/player.png"));
 	m_sprite.setScale(0.75f, 0.75f);
@@ -27,7 +28,7 @@ void Player::Update(sf::Time _frameTime)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !m_shapeKeyDown[i] && m_shapeKey[i] == "Circle")
 		{
 			m_shapeKeyDown[i] = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-			fire();
+			fire(m_shapeKey[i]);
 		}
 		else
 		{
@@ -36,7 +37,7 @@ void Player::Update(sf::Time _frameTime)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !m_shapeKeyDown[i] && m_shapeKey[i] == "Triangle")
 		{
 			m_shapeKeyDown[i] = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
-			fire();
+			fire(m_shapeKey[i]);
 		}
 		else
 		{
@@ -45,7 +46,7 @@ void Player::Update(sf::Time _frameTime)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !m_shapeKeyDown[i] && m_shapeKey[i] == "Square")
 		{
 			m_shapeKeyDown[i] = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
-			fire();
+			fire(m_shapeKey[i]);
 		}
 		else
 		{
@@ -54,7 +55,7 @@ void Player::Update(sf::Time _frameTime)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && !m_shapeKeyDown[i] && m_shapeKey[i] == "Star")
 		{
 			m_shapeKeyDown[i] = sf::Keyboard::isKeyPressed(sf::Keyboard::F);
-			fire();
+			fire(m_shapeKey[i]);
 		}
 		else
 		{
@@ -65,7 +66,7 @@ void Player::Update(sf::Time _frameTime)
 }
 
 
-void Player::fire()
+void Player::fire(sf::String _shape)
 {
-	
+	m_level->loadBullet(_shape);
 }

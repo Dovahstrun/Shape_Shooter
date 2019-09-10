@@ -7,7 +7,7 @@
 EnemyShape::EnemyShape()
 	: Shape()
 {
-	m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_" + getThisShape(rand() % 4) + ".png"));
+	m_sprite.setTexture(AssetManager::GetTexture("resources/graphics/enemy_" + m_currentShape + ".png"));
 	m_sprite.setScale(0.75f, 0.75f);
 }
 

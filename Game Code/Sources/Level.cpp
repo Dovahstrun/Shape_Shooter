@@ -15,6 +15,11 @@ Level::Level()
 	, m_background()
 	, m_drawSpriteList()
 	, m_updateList()
+	, m_collisionList()
+	, m_timer(0.0f)
+	, m_timeBetweenSpawns(3.0f)
+	, m_pendingBullet(false)
+	, m_bulletToSpawn()
 {
 	loadLevel(1);
 }
@@ -66,6 +71,42 @@ void Level::Update(sf::Time _frameTime)
 			m_updateList[i]->Update(_frameTime);
 		}
 	}
+
+
+	// -----------------------------------------------
+	// Collision Section
+	// -----------------------------------------------
+
+	for (int i = 0; i < m_collisionList.size(); ++i)
+	{
+		GameObject* handler = m_collisionList[i].first;
+		GameObject* collider = m_collisionList[i].second;
+
+
+		if (handler->isActive() && collider->isActive())
+		{
+			if (handler->GetBounds().intersects(collider->GetBounds()))
+			{
+				handler->Collide(*collider);
+			}
+		}
+	}
+
+	//Spawning enemy shapes
+	m_timer += _frameTime.asSeconds();
+	if (m_timer > m_timeBetweenSpawns)
+	{
+		EnemyShape* eShape = new EnemyShape();
+		eShape->SetPosition(1400, 550);
+		m_drawSpriteList.push_back(eShape);
+		m_updateList.push_back(eShape);
+		m_timer = 0;
+	}
+
+	if (m_pendingBullet)
+	{
+		spawnBullet(m_bulletToSpawn);
+	}
 }
 
 
@@ -74,11 +115,16 @@ void Level::loadLevel(int _levelToLoad)
 
 	///Cleanup the old level
 
-	//TODO: Delete any data already in the level
-	
+	//Delete any data already in the level
+	for (int i = 0; i < m_updateList.size(); ++i)
+	{
+		delete m_updateList[i];
+	}
 
 	//Clear out the lists
-
+	m_updateList.clear();
+	m_drawSpriteList.clear();
+	m_collisionList.clear();
 
 	///Setup everything
 
@@ -87,23 +133,18 @@ void Level::loadLevel(int _levelToLoad)
 
 
 	//Set up all the game objects
-	Player* player = new Player();
-	m_player = player;
-	player->SetPosition(200, 550);
-	m_drawSpriteList.push_back(player);
-	m_updateList.push_back(player);
-
-	NiceShape* shape = new NiceShape();
-	shape->SetPosition(700, 550);
-	m_drawSpriteList.push_back(shape);
-	m_updateList.push_back(shape);
-
+	
 	EnemyShape* eShape = new EnemyShape();
 	eShape->SetPosition(1400, 550);
 	m_drawSpriteList.push_back(eShape);
 	m_updateList.push_back(eShape);
 
-	
+	Player* player = new Player();
+	m_player = player;
+	player->SetPosition(200, 550);
+	m_drawSpriteList.push_back(player);
+	m_collisionList.push_back(std::make_pair(player, eShape));
+	m_updateList.push_back(player);
 }
 
 void Level::ReloadLevel()
@@ -114,4 +155,23 @@ void Level::ReloadLevel()
 int Level::GetCurrentLevel()
 {
 	return m_currentLevel;
+}
+
+void Level::loadBullet(sf::String _shapeToFire)
+{
+	m_bulletToSpawn = _shapeToFire;
+}
+
+void Level::spawnBullet(sf::String _shapeToFire)
+{
+	NiceShape* shape = new NiceShape();
+	shape->setThisShape(_shapeToFire);
+	shape->SetPosition(700, 550);
+	m_drawSpriteList.push_back(shape);
+	m_updateList.push_back(shape);
+}
+
+bool Level::deleteShape(Shape * _toDelete)
+{
+	return false;
 }
